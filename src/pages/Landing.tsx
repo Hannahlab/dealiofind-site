@@ -406,6 +406,7 @@ export default function Landing() {
     >
       <HeroBanner />
       <main className="flex-1">
+        <div className="h-4" />
         <ProductGridSection />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="h-px bg-[#e8e0d8]" />
