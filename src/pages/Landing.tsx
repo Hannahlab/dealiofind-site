@@ -193,52 +193,50 @@ function HeroBanner() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #f5ede4 0%, #efe5d8 40%, #e8ddd0 100%)" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-0">
-          {/* Left decorative vases */}
-          <div className="hidden lg:block absolute left-4 top-1/2 -translate-y-1/2">
-            <img
-              src="https://images.unsplash.com/photo-1612196808214-b7e239e5bb89?w=120&h=200&fit=crop"
-              alt=""
-              className="w-16 h-28 object-cover rounded-lg opacity-60"
-            />
-          </div>
+    <section className="relative overflow-hidden bg-[#f0e5d5]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative min-h-[380px] lg:min-h-[440px] flex items-center">
+        {/* Left decorative vases with pampas grass */}
+        <div className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2">
+          <img
+            src="https://images.unsplash.com/photo-1612196808214-b7e239e5bb89?w=300&h=360&fit=crop"
+            alt=""
+            className="w-52 h-64 object-cover rounded-xl opacity-80"
+          />
+        </div>
 
-          {/* Center text */}
-          <div className="text-center lg:text-center flex-1 z-10">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-foreground leading-tight">
-              DEALIOFIND: Curated Living.
-              <br />
-              Unbeatable Discoveries.
-            </h1>
-            <p className="text-muted-foreground mt-4 text-sm sm:text-base">
-              Explore Premium Picks for Every Home
-            </p>
-            <button
-              onClick={() => navigate("/catalog")}
-              className="mt-6 px-8 py-3 rounded-full bg-white/80 text-foreground text-sm font-semibold hover:bg-white transition-colors cursor-pointer border border-white/40 shadow-sm"
-            >
-              Shop Now
-            </button>
-          </div>
+        {/* Center text */}
+        <div className="text-center w-full z-10">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#3a2f28] leading-snug">
+            DEALIOFIND: Curated Living.
+            <br />
+            Unbeatable Discoveries.
+          </h1>
+          <p className="text-[#6b5e52] mt-5 text-sm sm:text-base">
+            Explore Premium Picks for Every Home
+          </p>
+          <button
+            onClick={() => navigate("/catalog")}
+            className="mt-7 px-9 py-3 rounded-full bg-white/70 text-[#3a2f28] text-sm font-semibold hover:bg-white transition-colors cursor-pointer border border-white/50 shadow-sm"
+          >
+            Shop Now
+          </button>
+        </div>
 
-          {/* Right coffee maker */}
-          <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2">
-            <img
-              src="https://images.unsplash.com/photo-1517256673644-36ad11246d21?w=180&h=220&fit=crop"
-              alt=""
-              className="w-40 h-52 object-cover rounded-xl"
-            />
-          </div>
+        {/* Right coffee maker */}
+        <div className="hidden lg:block absolute right-10 top-1/2 -translate-y-1/2">
+          <img
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=320&h=360&fit=crop"
+            alt=""
+            className="w-56 h-64 object-cover rounded-xl opacity-90"
+          />
         </div>
       </div>
 
       {/* Dot indicators */}
-      <div className="flex justify-center gap-2 pb-6">
-        <span className="w-2.5 h-2.5 rounded-full bg-[#d4a574]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#d4c4b0]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#d4c4b0]" />
+      <div className="flex justify-center gap-2 pb-8">
+        <span className="w-2.5 h-2.5 rounded-full bg-[#3a2f28]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#c4b496]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#c4b496]" />
       </div>
     </section>
   );
@@ -366,13 +364,13 @@ function SpecialSection() {
 
 function Footer() {
   return (
-    <footer className="bg-[#3a2f28] text-white/90 mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <footer className="bg-[#c4a882] text-[#3a2f28] mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-serif font-bold mb-3">Dealiofind</h3>
-            <p className="text-white/60 text-sm leading-relaxed">
+            <p className="text-[#5a4a3a] text-sm leading-relaxed">
               DEALIOFIND: Curated Living.
               <br />
               Unbeatable Discoveries.
@@ -381,27 +379,27 @@ function Footer() {
 
           {/* Customer Care */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-[#3a2f28]">
               Customer Care
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <a href="#" className="text-sm text-white/60 hover:text-white transition-colors">
+                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
                   Contact Us
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-white/60 hover:text-white transition-colors">
+                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
                   Shipping
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-white/60 hover:text-white transition-colors">
+                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
                   Returns
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-white/60 hover:text-white transition-colors">
+                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
                   FAQ
                 </a>
               </li>
@@ -410,22 +408,22 @@ function Footer() {
 
           {/* About Us */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-[#3a2f28]">
               About Us
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <a href="#" className="text-sm text-white/60 hover:text-white transition-colors">
+                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
                   Our Story
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-white/60 hover:text-white transition-colors">
+                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
                   Careers
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-white/60 hover:text-white transition-colors">
+                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
                   Sustainability
                 </a>
               </li>
@@ -434,38 +432,38 @@ function Footer() {
 
           {/* Newsletter & Payment */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-[#3a2f28]">
               Newsletter Signup
             </h4>
             <div className="flex gap-2">
               <input
                 type="email"
                 placeholder="Email"
-                className="flex-1 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/40 text-sm focus:outline-none focus:ring-2 focus:ring-[#d4a574]/50"
+                className="flex-1 px-4 py-2.5 rounded-lg bg-white/40 border border-[#a89070] text-[#3a2f28] placeholder:text-[#7a6a5a] text-sm focus:outline-none focus:ring-2 focus:ring-[#3a2f28]/20"
               />
-              <button className="px-5 py-2.5 rounded-lg bg-[#d4a574] text-white text-sm font-semibold hover:bg-[#c49564] transition-colors cursor-pointer">
+              <button className="px-5 py-2.5 rounded-lg bg-[#3a2f28] text-white text-sm font-semibold hover:bg-[#2a1f18] transition-colors cursor-pointer">
                 Join
               </button>
             </div>
 
-            <h4 className="text-xs font-bold uppercase tracking-wider mt-8 mb-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider mt-8 mb-3 text-[#3a2f28]">
               Payment / Shipping
             </h4>
             <div className="flex gap-2.5 flex-wrap">
-              <div className="px-3 py-1.5 rounded bg-white/10 text-[10px] font-bold tracking-wide">VISA</div>
-              <div className="px-3 py-1.5 rounded bg-white/10 text-[10px] font-bold tracking-wide">Mastercard</div>
-              <div className="px-3 py-1.5 rounded bg-white/10 text-[10px] font-bold tracking-wide">Maestro</div>
-              <div className="px-3 py-1.5 rounded bg-white/10 text-[10px] font-bold tracking-wide">COD</div>
-              <div className="px-3 py-1.5 rounded bg-white/10 text-[10px] font-bold tracking-wide">EFT</div>
+              <div className="px-3 py-1.5 rounded bg-white/40 border border-[#a89070] text-[10px] font-bold tracking-wide text-[#3a2f28]">VISA</div>
+              <div className="px-3 py-1.5 rounded bg-white/40 border border-[#a89070] text-[10px] font-bold tracking-wide text-[#3a2f28]">Mastercard</div>
+              <div className="px-3 py-1.5 rounded bg-white/40 border border-[#a89070] text-[10px] font-bold tracking-wide text-[#3a2f28]">Maestro</div>
+              <div className="px-3 py-1.5 rounded bg-white/40 border border-[#a89070] text-[10px] font-bold tracking-wide text-[#3a2f28]">COD</div>
+              <div className="px-3 py-1.5 rounded bg-white/40 border border-[#a89070] text-[10px] font-bold tracking-wide text-[#3a2f28]">EFT</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-[#a89070]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <p className="text-xs text-white/40 text-center">
+          <p className="text-xs text-[#5a4a3a] text-center">
             © 2024 Dealiofind. All Rights Reserved.
           </p>
         </div>
