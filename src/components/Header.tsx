@@ -19,7 +19,7 @@ export function Header() {
           <button onClick={() => navigate(isAuthenticated ? "/dashboard" : "/auth")} className="hover:text-[#d4a574] transition-colors cursor-pointer bg-transparent border-none text-xs text-foreground">
             Account
           </button>
-          <span className="hover:text-[#d4a574] transition-colors cursor-pointer">Wishlist</span>
+          <button className="hover:text-[#d4a574] transition-colors cursor-pointer bg-transparent border-none text-sm text-foreground">Wishlist</button>
           <button onClick={() => setIsOpen(true)} className="flex items-center gap-1.5 hover:text-[#d4a574] transition-colors cursor-pointer bg-transparent border-none text-xs text-foreground">
             <ShoppingCart className="h-4 w-4" />
             {itemCount > 0 ? `${itemCount} items` : "0 items"}

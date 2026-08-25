@@ -370,7 +370,7 @@ function Footer() {
       <div className="border-t border-[#c0b090]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <p className="text-xs text-[#5a4a3a] text-center">
-            © 2024 Dealiofind. All Rights Reserved.
+            © 2026 Dealiofind. All Rights Reserved.
           </p>
         </div>
       </div>
