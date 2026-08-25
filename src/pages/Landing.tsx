@@ -333,6 +333,16 @@ function Footer() {
                   Sustainability
                 </a>
               </li>
+              <li>
+                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
+                  Terms & Conditions
+                </a>
+              </li>
             </ul>
           </div>
 
