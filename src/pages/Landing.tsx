@@ -269,7 +269,7 @@ function SpecialSection() {
 function Footer() {
   return (
     <footer className="bg-[#d5c4a8] text-[#3a2f28] mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div className="w-full px-5 sm:px-6 lg:px-8 py-14 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {/* Brand */}
           <div>
