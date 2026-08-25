@@ -50,7 +50,7 @@ function HeroBanner() {
 
   return (
     <section className="relative bg-[#ede5d7]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[220px] sm:min-h-[300px] lg:min-h-[400px] flex items-center justify-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[180px] sm:min-h-[260px] lg:min-h-[360px] flex items-center justify-center">
         {/* Left decorative image */}
         <div className="absolute left-0 lg:left-2 top-1/2 -translate-y-1/2 pointer-events-none">
           <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[140px] sm:h-[260px] lg:h-[360px] w-auto object-contain" />
