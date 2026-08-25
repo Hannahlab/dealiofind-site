@@ -63,10 +63,10 @@ function HeroBanner() {
 
         {/* Center text */}
         <div className="text-center w-full pt-10 sm:pt-14 lg:py-6 z-10 relative px-20 sm:px-16 lg:px-0">
-          <h1 className="text-[9px] sm:text-xl lg:text-3xl font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
+          <h1 className="text-[11px] sm:text-lg lg:text-3xl font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
             DEALIOFIND: Curated Living. Unbeatable Discoveries.
           </h1>
-          <p className="text-[#7a6b5a] mt-0.5 sm:mt-3 text-[7px] sm:text-sm font-normal">
+          <p className="text-[#7a6b5a] mt-0.5 sm:mt-3 text-[8px] sm:text-sm font-normal">
             Explore Premium Picks for Every Home
           </p>
           <button
