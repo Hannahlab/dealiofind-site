@@ -11,7 +11,8 @@ type Tab = "orders" | "content" | "account";
 export default function Dashboard() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
-  const [tab, setTab] = useState<Tab>("orders");
+  const isStaff = user?.role === "owner" || user?.role === "admin";
+  const [tab, setTab] = useState<Tab>(isStaff ? "orders" : "account");
   const orders = useQuery(api.orders.listByUser);
   const userContent = useQuery(api.userContent.listByUser);
   const createContent = useMutation(api.userContent.create);
@@ -58,11 +59,15 @@ export default function Dashboard() {
     }
   };
 
-  const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
-    { id: "orders", label: "My Orders", icon: <Package className="h-4 w-4" /> },
-    { id: "content", label: "My Content", icon: <Upload className="h-4 w-4" /> },
-    { id: "account", label: "Account", icon: <User className="h-4 w-4" /> },
-  ];
+  const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = isStaff
+    ? [
+        { id: "orders", label: "My Orders", icon: <Package className="h-4 w-4" /> },
+        { id: "content", label: "My Content", icon: <Upload className="h-4 w-4" /> },
+        { id: "account", label: "Account", icon: <User className="h-4 w-4" /> },
+      ]
+    : [
+        { id: "account", label: "Account", icon: <User className="h-4 w-4" /> },
+      ];
 
   return (
     <main className="min-h-screen bg-background px-4 sm:px-6 lg:px-8 py-10">
@@ -74,9 +79,14 @@ export default function Dashboard() {
             <h1 className="mt-1 text-3xl font-serif font-bold tracking-tight text-foreground">
               Welcome{user?.name ? `, ${user.name}` : ""}
             </h1>
+            {isStaff && (
+              <span className="inline-block mt-1 px-2 py-0.5 rounded text-xs font-medium bg-[#d4a574]/20 text-[#d4a574] capitalize">
+                {user?.role}
+              </span>
+            )}
           </div>
           <div className="flex gap-3">
-            {user?.role === "admin" && (
+            {isStaff && (
               <button
                 onClick={() => navigate("/admin")}
                 className="px-4 py-2 rounded-full border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors cursor-pointer"
@@ -95,22 +105,24 @@ export default function Dashboard() {
         </header>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-8 border-b border-border pb-1">
-          {tabs.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => setTab(t.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-t-lg transition-colors cursor-pointer ${
-                tab === t.id
-                  ? "text-foreground border-b-2 border-foreground bg-muted/50"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t.icon}
-              <span className="hidden sm:inline">{t.label}</span>
-            </button>
-          ))}
-        </div>
+        {tabs.length > 1 && (
+          <div className="flex gap-2 mb-8 border-b border-border pb-1">
+            {tabs.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setTab(t.id)}
+                className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-t-lg transition-colors cursor-pointer ${
+                  tab === t.id
+                    ? "text-foreground border-b-2 border-foreground bg-muted/50"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {t.icon}
+                <span className="hidden sm:inline">{t.label}</span>
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Tab Content */}
         <motion.div
@@ -119,7 +131,7 @@ export default function Dashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          {tab === "orders" && (
+          {tab === "orders" && isStaff && (
             <div>
               <h2 className="text-xl font-semibold text-foreground mb-4">My Orders</h2>
               {orders === undefined ? (
@@ -174,7 +186,7 @@ export default function Dashboard() {
             </div>
           )}
 
-          {tab === "content" && (
+          {tab === "content" && isStaff && (
             <div>
               <h2 className="text-xl font-semibold text-foreground mb-4">My Content</h2>
 

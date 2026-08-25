@@ -4,12 +4,14 @@ import { Infer, v } from "convex/values";
 
 // default user roles. can add / remove based on the project as needed
 export const ROLES = {
+  OWNER: "owner",
   ADMIN: "admin",
   USER: "user",
   MEMBER: "member",
 } as const;
 
 export const roleValidator = v.union(
+  v.literal(ROLES.OWNER),
   v.literal(ROLES.ADMIN),
   v.literal(ROLES.USER),
   v.literal(ROLES.MEMBER),
@@ -44,8 +46,11 @@ const schema = defineSchema(
       inStock: v.optional(v.boolean()),
       featured: v.optional(v.boolean()),
       special: v.optional(v.boolean()),
+      slug: v.optional(v.string()),
+      metaDescription: v.optional(v.string()),
     }).index("by_category", ["category"])
-      .index("by_featured", ["featured"]),
+      .index("by_featured", ["featured"])
+      .index("by_slug", ["slug"]),
 
     userContent: defineTable({
       userId: v.id("users"),

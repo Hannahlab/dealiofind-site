@@ -1,79 +1,21 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { useCart } from "@/hooks/use-cart";
-
-/* ─── Data ──────────────────────────────────────────────────────────── */
-
-const categoryProducts: Record<string, typeof featuredRow1> = {
-  "Home Essentials": {
-    row1: [
-      { name: "Organic Cotton Bedding Set", price: "R1200", image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&h=500&fit=crop", bg: "bg-[#f5ede4]" },
-      { name: "Nordic Ceramic Mug Collection", price: "R450", image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500&h=500&fit=crop", bg: "bg-[#f0ebe3]" },
-      { name: "Bamboo Bath Mat", price: "R320", image: "https://images.unsplash.com/photo-1600369672770-985fd30004eb?w=500&h=500&fit=crop", bg: "bg-[#f2e8d8]" },
-    ],
-    row2: [
-      { name: "Organic Cotton Mat", price: "R220", image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=500&h=500&fit=crop", bg: "bg-[#f5ede4]" },
-      { name: "Nordic Ceramic", price: "R450", image: "https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?w=500&h=500&fit=crop", bg: "bg-[#f0ebe3]" },
-      { name: "Wellness & Decor", price: "R320", image: "https://images.unsplash.com/photo-1612196808214-b7e239e5bb89?w=500&h=500&fit=crop", bg: "bg-[#d5dfc8]" },
-    ],
-  },
-  "Kitchen & Dining": {
-    row1: [
-      { name: "Nordic Ceramic Mug Collection", price: "R450", image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500&h=500&fit=crop", bg: "bg-[#f0ebe3]" },
-      { name: "Ceramic Dinnerware Set", price: "R680", image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=500&h=500&fit=crop", bg: "bg-[#f5ede4]" },
-      { name: "Bamboo Serving Board", price: "R290", image: "https://images.unsplash.com/photo-1600369672770-985fd30004eb?w=500&h=500&fit=crop", bg: "bg-[#f2e8d8]" },
-    ],
-    row2: [
-      { name: "Stoneware Pitcher", price: "R380", image: "https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?w=500&h=500&fit=crop", bg: "bg-[#f0ebe3]" },
-      { name: "Insulated Bottle", price: "R280", image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop", bg: "bg-[#f8e8d8]" },
-      { name: "Sage Ceramic Bowl Set", price: "R380", image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=500&fit=crop", bg: "bg-[#f2e8d8]" },
-    ],
-  },
-  "Wellness & Decor": {
-    row1: [
-      { name: "Wellness & Decor Candle Set", price: "R320", image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop", bg: "bg-[#f8e8d8]" },
-      { name: "Bamboo Bath Mat", price: "R320", image: "https://images.unsplash.com/photo-1600369672770-985fd30004eb?w=500&h=500&fit=crop", bg: "bg-[#f2e8d8]" },
-      { name: "Ceramic Ring Vase", price: "R120", image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=500&h=500&fit=crop", bg: "bg-[#f0ebe3]" },
-    ],
-    row2: [
-      { name: "Soft Textiles Bundle", price: "R350", image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=500&fit=crop", bg: "bg-[#f5ede4]" },
-      { name: "Quality Linen Bath Mat", price: "R320", image: "https://images.unsplash.com/photo-1600369672770-985fd30004eb?w=500&h=500&fit=crop", bg: "bg-[#f0ebe3]" },
-      { name: "Green Insulated Bottle", price: "R280", image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop", bg: "bg-[#f8e8d8]" },
-    ],
-  },
-};
-
-const dealOfWeekProducts = [
-  { name: "Organic Cotton Bedding Set", price: "R1200", image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&h=500&fit=crop", bg: "bg-[#f5ede4]" },
-  { name: "Nordic Ceramic Mug Collection", price: "R450", image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500&h=500&fit=crop", bg: "bg-[#f0ebe3]" },
-  { name: "Bamboo Bath Mat", price: "R320", image: "https://images.unsplash.com/photo-1600369672770-985fd30004eb?w=500&h=500&fit=crop", bg: "bg-[#f2e8d8]" },
-  { name: "Soft Textiles", price: "R350", image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=500&fit=crop", bg: "bg-[#f5ede4]" },
-  { name: "Wellness & Decor", price: "R320", image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop", bg: "bg-[#f8e8d8]" },
-  { name: "Quality Bath Mat", price: "R320", image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=500&fit=crop", bg: "bg-[#f0ebe3]" },
-];
-
-const specialProducts = [
-  { name: "Bamboo Bath Mat", price: "R320", image: "https://images.unsplash.com/photo-1600369672770-985fd30004eb?w=500&h=500&fit=crop", bg: "bg-[#f5ede4]" },
-  { name: "Ceramic Decor", price: "R120", image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=500&h=500&fit=crop", bg: "bg-[#f0ebe3]" },
-  { name: "Bamboo Bath Mat", price: "R320", image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop", bg: "bg-[#f8e8d8]" },
-  { name: "Soft Textiles", price: "R350", image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=500&fit=crop", bg: "bg-[#f2e8d8]" },
-];
-
-type Product = { name: string; price: string; image: string; bg: string };
-const featuredRow1 = { row1: [] as Product[], row2: [] as Product[] };
 
 /* ─── Components ────────────────────────────────────────────────────── */
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({ product }: { product: { _id: string; name: string; price: number; image: string; bgColor?: string } }) {
   const { addItem } = useCart();
   const navigate = useNavigate();
 
   return (
     <div className="flex flex-col items-center">
       <button
-        onClick={() => navigate("/catalog")}
-        className={`w-full ${product.bg} rounded-2xl overflow-hidden aspect-square flex items-center justify-center p-6 cursor-pointer border-none`}
+        onClick={() => navigate(`/product/${product._id}`)}
+        className={`w-full ${product.bgColor || "bg-[#f5ede4]"} rounded-2xl overflow-hidden aspect-square flex items-center justify-center p-6 cursor-pointer border-none`}
       >
         <img
           src={product.image}
@@ -83,13 +25,13 @@ function ProductCard({ product }: { product: Product }) {
         />
       </button>
       <h3 className="text-sm font-bold text-foreground mt-3 text-center">{product.name}</h3>
-      <p className="text-sm font-bold text-foreground mt-0.5">{product.price}</p>
+      <p className="text-sm font-bold text-foreground mt-0.5">R{product.price}</p>
       <button
         onClick={() =>
           addItem({
-            productId: product.name,
+            productId: product._id,
             name: product.name,
-            price: parseInt(product.price.replace("R", "")),
+            price: product.price,
             image: product.image,
           })
         }
@@ -108,7 +50,7 @@ function HeroBanner() {
 
   return (
     <section className="relative overflow-hidden bg-[#ede5d7]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-2 sm:pt-6 sm:pb-10 lg:pt-8 lg:pb-24 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-2 sm:pt-8 sm:pb-10 lg:pt-8 lg:pb-20 relative">
         {/* Left decorative image */}
         <div className="absolute left-0 lg:left-4 top-1/2 -translate-y-1/2">
           <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[120px] sm:h-[240px] lg:h-[340px] w-auto object-contain" />
@@ -120,7 +62,7 @@ function HeroBanner() {
         </div>
 
         {/* Center text */}
-        <div className="text-center w-full pt-3 sm:py-4 lg:py-6 z-10 relative px-14 sm:px-0">
+        <div className="text-center w-full pt-6 sm:py-4 lg:py-6 z-10 relative px-14 sm:px-0">
           <h1 className="text-[9px] sm:text-2xl lg:text-3xl font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
             DEALIOFIND: Curated Living. Unbeatable Discoveries.
           </h1>
@@ -151,12 +93,12 @@ function HeroBanner() {
 function CategoryTabs({
   active,
   onSelect,
+  categories,
 }: {
   active: string;
   onSelect: (cat: string) => void;
+  categories: string[];
 }) {
-  const categories = Object.keys(categoryProducts);
-
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-2">
       <div className="flex justify-center gap-4 sm:gap-12 lg:gap-24 border-b border-[#e8e0d8]">
@@ -181,42 +123,74 @@ function CategoryTabs({
 /* ─── Product Grid Section ──────────────────────────────────────────── */
 
 function ProductGridSection() {
-  const [activeCategory, setActiveCategory] = useState("Home Essentials");
+  const allProducts = useQuery(api.products.list, {});
+  const categoriesQuery = useQuery(api.products.categories);
   const navigate = useNavigate();
-  const data = categoryProducts[activeCategory];
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const categories = categoriesQuery ?? [];
+  const filteredProducts = activeCategory
+    ? (allProducts ?? []).filter((p) => p.category === activeCategory)
+    : (allProducts ?? []);
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <CategoryTabs active={activeCategory} onSelect={setActiveCategory} />
+      {categories.length > 0 && (
+        <CategoryTabs
+          active={activeCategory ?? categories[0]}
+          onSelect={(cat) => setActiveCategory(cat === activeCategory ? null : cat)}
+          categories={categories}
+        />
+      )}
 
       <motion.div
-        key={activeCategory}
+        key={activeCategory ?? "all"}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
-        {/* Row 1 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-          {data.row1.map((p) => (
-            <ProductCard key={p.name + p.price} product={p} />
-          ))}
-        </div>
-
-        {/* Row 2 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
-          {data.row2.map((p) => (
-            <ProductCard key={p.name + p.price} product={p} />
-          ))}
-        </div>
+        {allProducts === undefined ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="animate-pulse">
+                <div className="bg-[#f0e0cc] rounded-2xl aspect-square" />
+                <div className="mt-3 space-y-2">
+                  <div className="h-4 bg-[#f0e0cc] rounded w-3/4 mx-auto" />
+                  <div className="h-4 bg-[#f0e0cc] rounded w-1/4 mx-auto" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-muted-foreground">No products in this category yet.</p>
+          </div>
+        ) : (
+          <>
+            {/* Row 1 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+              {filteredProducts.slice(0, 3).map((p) => (
+                <ProductCard key={p._id} product={p} />
+              ))}
+            </div>
+            {/* Row 2 */}
+            {filteredProducts.length > 3 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+                {filteredProducts.slice(3, 6).map((p) => (
+                  <ProductCard key={p._id} product={p} />
+                ))}
+              </div>
+            )}
+          </>
+        )}
       </motion.div>
 
-      {/* Show Now */}
       <div className="flex justify-center mt-12">
         <button
           onClick={() => navigate("/catalog")}
           className="px-10 py-3 rounded-full border border-[#d4b896] text-foreground text-sm font-semibold hover:bg-[#f0e0cc] transition-colors cursor-pointer bg-transparent"
         >
-          Show Now
+          View All Products
         </button>
       </div>
     </section>
@@ -226,17 +200,26 @@ function ProductGridSection() {
 /* ─── Deal of the Week ──────────────────────────────────────────────── */
 
 function DealOfWeekSection() {
+  const allProducts = useQuery(api.products.list, { featured: true });
+  const dealProducts = (allProducts ?? []).slice(0, 6);
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h2 className="text-3xl sm:text-4xl font-serif font-bold text-center text-foreground mb-10">
         Deal of the Week
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {dealOfWeekProducts.map((p) => (
-          <ProductCard key={p.name + p.price} product={p} />
-        ))}
-      </div>
+      {dealProducts.length === 0 ? (
+        <div className="text-center py-10">
+          <p className="text-muted-foreground">No deals yet. Check back soon!</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {dealProducts.map((p) => (
+            <ProductCard key={p._id} product={p} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
@@ -244,22 +227,31 @@ function DealOfWeekSection() {
 /* ─── Special Section ───────────────────────────────────────────────── */
 
 function SpecialSection() {
+  const allProducts = useQuery(api.products.list, { special: true });
+  const specialProducts = (allProducts ?? []).slice(0, 4);
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-8">
         <h2 className="text-3xl sm:text-4xl font-serif font-bold text-foreground mb-4">
-          Deal of the Week
+          Special Picks
         </h2>
         <span className="inline-block px-6 py-2 rounded-full bg-[#f0e0cc] text-foreground text-sm font-semibold">
-          Special
+          Limited Time
         </span>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-        {specialProducts.map((p) => (
-          <ProductCard key={p.name + p.price} product={p} />
-        ))}
-      </div>
+      {specialProducts.length === 0 ? (
+        <div className="text-center py-10">
+          <p className="text-muted-foreground">No special items yet.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {specialProducts.map((p) => (
+            <ProductCard key={p._id} product={p} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
@@ -287,26 +279,10 @@ function Footer() {
               Customer Care
             </h4>
             <ul className="space-y-2.5">
-              <li>
-                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
-                  Contact Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
-                  Shipping
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
-                  Returns
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
-                  FAQ
-                </a>
-              </li>
+              <li><a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">Contact Us</a></li>
+              <li><a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">Shipping</a></li>
+              <li><a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">Returns</a></li>
+              <li><a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">FAQ</a></li>
             </ul>
           </div>
 
@@ -316,31 +292,11 @@ function Footer() {
               About Us
             </h4>
             <ul className="space-y-2.5">
-              <li>
-                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
-                  Our Story
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
-                  Sustainability
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">
-                  Terms & Conditions
-                </a>
-              </li>
+              <li><a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">Our Story</a></li>
+              <li><a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">Careers</a></li>
+              <li><a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">Sustainability</a></li>
+              <li><a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="text-sm text-[#5a4a3a] hover:text-[#3a2f28] transition-colors">Terms & Conditions</a></li>
             </ul>
           </div>
 
