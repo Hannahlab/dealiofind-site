@@ -193,50 +193,69 @@ function HeroBanner() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative overflow-hidden bg-[#f0e5d5]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative min-h-[380px] lg:min-h-[440px] flex items-center">
-        {/* Left decorative vases with pampas grass */}
-        <div className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2">
-          <img
-            src="https://images.unsplash.com/photo-1612196808214-b7e239e5bb89?w=300&h=360&fit=crop"
-            alt=""
-            className="w-52 h-64 object-cover rounded-xl opacity-80"
-          />
+    <section className="relative overflow-hidden bg-[#ede5d7]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16 relative min-h-[400px] lg:min-h-[480px]">
+        {/* Left vases with pampas grass - exactly as in the reference image */}
+        <div className="hidden lg:flex absolute left-8 top-1/2 -translate-y-[55%] items-end">
+          <div className="relative w-[260px] h-[340px]">
+            {/* Tall dried pampas grass stalks */}
+            <div className="absolute top-0 left-4 w-1 h-20 bg-[#b8a88a] rounded-full" />
+            <div className="absolute top-[-8px] left-6 w-1 h-22 bg-[#c4b496] rounded-full rotate-[-5deg]" />
+            <div className="absolute top-2 left-8 w-0.5 h-18 bg-[#a89878] rounded-full rotate-[3deg]" />
+            {/* Pampas fluffy tops */}
+            <div className="absolute top-[-6px] left-1 w-5 h-8 bg-[#d4c4a4] rounded-full opacity-80" />
+            <div className="absolute top-[-10px] left-5 w-4 h-9 bg-[#c8b898] rounded-full opacity-70 rotate-[-8deg]" />
+            <div className="absolute top-[-4px] left-9 w-4 h-7 bg-[#d0c098] rounded-full opacity-75 rotate-[5deg]" />
+            {/* Tall cylindrical vase */}
+            <div className="absolute bottom-20 left-2 w-12 h-28 bg-[#c4b496] rounded-t-full" />
+            {/* Round vase */}
+            <div className="absolute bottom-16 left-[70px] w-20 h-20 bg-[#b8a88a] rounded-full" />
+            {/* Small round vase */}
+            <div className="absolute bottom-20 right-8 w-12 h-12 bg-[#c4b496] rounded-full" />
+          </div>
+        </div>
+
+        {/* Right coffee maker - exactly as in the reference image */}
+        <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2">
+          <div className="relative w-[240px] h-[300px]">
+            {/* Coffee machine body */}
+            <div className="absolute bottom-8 right-0 w-28 h-44 bg-[#e8e0d4] rounded-lg border border-[#d8d0c4]" />
+            {/* Machine top/filter area */}
+            <div className="absolute bottom-48 right-2 w-24 h-10 bg-[#f0e8dc] rounded-t-lg border border-[#d8d0c4]" />
+            {/* Glass carafe */}
+            <div className="absolute bottom-8 right-4 w-16 h-24 bg-[#d8c8a8]/40 rounded-b-lg border border-[#c8b898]" />
+            {/* Coffee drip line */}
+            <div className="absolute bottom-32 right-10 w-0.5 h-6 bg-[#8b6914]" />
+            {/* Cup on saucer */}
+            <div className="absolute bottom-4 right-20 w-12 h-8 bg-white rounded-b-full border border-[#d8d0c4]" />
+            <div className="absolute bottom-2 right-18 w-16 h-2 bg-white rounded-full border border-[#d8d0c4]" />
+          </div>
         </div>
 
         {/* Center text */}
-        <div className="text-center w-full z-10">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#3a2f28] leading-snug">
+        <div className="text-center w-full pt-8 lg:pt-0 z-10 relative">
+          <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
             DEALIOFIND: Curated Living.
             <br />
             Unbeatable Discoveries.
           </h1>
-          <p className="text-[#6b5e52] mt-5 text-sm sm:text-base">
+          <p className="text-[#7a6b5a] mt-5 text-sm sm:text-[15px] font-normal">
             Explore Premium Picks for Every Home
           </p>
           <button
             onClick={() => navigate("/catalog")}
-            className="mt-7 px-9 py-3 rounded-full bg-white/70 text-[#3a2f28] text-sm font-semibold hover:bg-white transition-colors cursor-pointer border border-white/50 shadow-sm"
+            className="mt-7 px-8 py-2.5 rounded-full bg-white/80 text-[#3a2f28] text-sm font-medium hover:bg-white transition-colors cursor-pointer border border-white/40"
           >
             Shop Now
           </button>
         </div>
-
-        {/* Right coffee maker */}
-        <div className="hidden lg:block absolute right-10 top-1/2 -translate-y-1/2">
-          <img
-            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=320&h=360&fit=crop"
-            alt=""
-            className="w-56 h-64 object-cover rounded-xl opacity-90"
-          />
-        </div>
       </div>
 
       {/* Dot indicators */}
-      <div className="flex justify-center gap-2 pb-8">
-        <span className="w-2.5 h-2.5 rounded-full bg-[#3a2f28]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#c4b496]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#c4b496]" />
+      <div className="flex justify-center gap-2.5 pb-8">
+        <span className="w-2 h-2 rounded-full bg-[#5a4a3a]" />
+        <span className="w-2 h-2 rounded-full bg-[#c8b898]" />
+        <span className="w-2 h-2 rounded-full bg-[#c8b898]" />
       </div>
     </section>
   );
@@ -364,7 +383,7 @@ function SpecialSection() {
 
 function Footer() {
   return (
-    <footer className="bg-[#c4a882] text-[#3a2f28] mt-16">
+    <footer className="bg-[#d5c4a8] text-[#3a2f28] mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
@@ -439,7 +458,7 @@ function Footer() {
               <input
                 type="email"
                 placeholder="Email"
-                className="flex-1 px-4 py-2.5 rounded-lg bg-white/40 border border-[#a89070] text-[#3a2f28] placeholder:text-[#7a6a5a] text-sm focus:outline-none focus:ring-2 focus:ring-[#3a2f28]/20"
+                className="flex-1 px-4 py-2.5 rounded-lg bg-white/50 border border-[#c0b090] text-[#3a2f28] placeholder:text-[#8a7a6a] text-sm focus:outline-none focus:ring-2 focus:ring-[#3a2f28]/20"
               />
               <button className="px-5 py-2.5 rounded-lg bg-[#3a2f28] text-white text-sm font-semibold hover:bg-[#2a1f18] transition-colors cursor-pointer">
                 Join
@@ -450,18 +469,18 @@ function Footer() {
               Payment / Shipping
             </h4>
             <div className="flex gap-2.5 flex-wrap">
-              <div className="px-3 py-1.5 rounded bg-white/40 border border-[#a89070] text-[10px] font-bold tracking-wide text-[#3a2f28]">VISA</div>
-              <div className="px-3 py-1.5 rounded bg-white/40 border border-[#a89070] text-[10px] font-bold tracking-wide text-[#3a2f28]">Mastercard</div>
-              <div className="px-3 py-1.5 rounded bg-white/40 border border-[#a89070] text-[10px] font-bold tracking-wide text-[#3a2f28]">Maestro</div>
-              <div className="px-3 py-1.5 rounded bg-white/40 border border-[#a89070] text-[10px] font-bold tracking-wide text-[#3a2f28]">COD</div>
-              <div className="px-3 py-1.5 rounded bg-white/40 border border-[#a89070] text-[10px] font-bold tracking-wide text-[#3a2f28]">EFT</div>
+              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">VISA</div>
+              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">Mastercard</div>
+              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">Maestro</div>
+              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">COD</div>
+              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">EFT</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#a89070]">
+      <div className="border-t border-[#c0b090]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <p className="text-xs text-[#5a4a3a] text-center">
             © 2024 Dealiofind. All Rights Reserved.
