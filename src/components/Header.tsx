@@ -15,7 +15,7 @@ export function Header() {
     <header className="bg-[#faf7f4] border-b border-[#e8e0d8] sticky top-0 z-40">
       {/* Top utility row */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-end gap-6 py-2 text-xs text-foreground">
+        <div className="flex items-center justify-end gap-6 py-3 text-sm text-foreground">
           <button onClick={() => navigate(isAuthenticated ? "/dashboard" : "/auth")} className="hover:text-[#d4a574] transition-colors cursor-pointer bg-transparent border-none text-xs text-foreground">
             Account
           </button>
