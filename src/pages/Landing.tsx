@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { ShoppingBag, Search, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import { useCart } from "@/hooks/use-cart";
+import { useAuth } from "@/hooks/use-auth";
 
 // Product data matching the design
 const featuredProducts = [
@@ -95,6 +98,9 @@ const staggerContainer = {
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { itemCount, setIsOpen } = useCart();
+  const { isAuthenticated } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
@@ -102,37 +108,48 @@ function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-serif font-bold text-foreground tracking-tight">
+            <button onClick={() => navigate("/")} className="text-2xl font-serif font-bold text-foreground tracking-tight cursor-pointer bg-transparent border-none p-0">
               Dealiofind
-            </h1>
+            </button>
           </div>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#featured" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <button onClick={() => navigate("/catalog")} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none">
               Shop
-            </a>
-            <a href="#special" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button onClick={() => navigate("/catalog")} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none">
               Deals
-            </a>
-            <a href="#footer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button onClick={() => document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" })} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none">
               About
-            </a>
+            </button>
           </nav>
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            <button className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <button onClick={() => navigate("/catalog")} className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none">
               <Search className="h-4 w-4" />
             </button>
-            <button className="relative text-muted-foreground hover:text-foreground transition-colors">
+            <button onClick={() => setIsOpen(true)} className="relative text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none">
               <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-[#d4a574] text-[10px] font-bold text-white flex items-center justify-center">
-                0
-              </span>
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-[#d4a574] text-[10px] font-bold text-white flex items-center justify-center">
+                  {itemCount}
+                </span>
+              )}
             </button>
+            {isAuthenticated ? (
+              <button onClick={() => navigate("/dashboard")} className="text-sm font-medium text-foreground hover:text-muted-foreground transition-colors cursor-pointer bg-transparent border-none">
+                Account
+              </button>
+            ) : (
+              <button onClick={() => navigate("/auth")} className="text-sm font-medium text-foreground hover:text-muted-foreground transition-colors cursor-pointer bg-transparent border-none">
+                Sign In
+              </button>
+            )}
             <button
-              className="md:hidden text-muted-foreground hover:text-foreground transition-colors"
+              className="md:hidden text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none"
               onClick={() => setMenuOpen(!menuOpen)}
             >
               {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -149,15 +166,15 @@ function Header() {
             className="md:hidden border-t border-border/40 py-4"
           >
             <nav className="flex flex-col gap-3">
-              <a href="#featured" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+              <button onClick={() => { navigate("/catalog"); setMenuOpen(false); }} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none text-left">
                 Shop
-              </a>
-              <a href="#special" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+              </button>
+              <button onClick={() => { navigate("/catalog"); setMenuOpen(false); }} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none text-left">
                 Deals
-              </a>
-              <a href="#footer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+              </button>
+              <button onClick={() => { document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); }} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none text-left">
                 About
-              </a>
+              </button>
             </nav>
           </motion.div>
         )}
@@ -166,24 +183,31 @@ function Header() {
   );
 }
 
-function ProductCard({ product, index }: { product: typeof featuredProducts[0]; index: number }) {
+function ProductCard({ product }: { product: typeof featuredProducts[0] }) {
+  const { addItem } = useCart();
+  const navigate = useNavigate();
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addItem({ productId: String(product.id), name: product.name, price: parseInt(product.price.replace("R", "")), image: product.image });
+  };
+
   return (
-    <motion.div
-      variants={fadeInUp}
-      className="group flex flex-col"
-    >
-      <div className={`${product.bgColor} rounded-2xl overflow-hidden aspect-square flex items-center justify-center p-6 shadow-sm`}>
-        <img
+    <motion.div variants={fadeInUp} className="group flex flex-col">
+      <button onClick={() => navigate(`/product/${product.id}`)} className={`${product.bgColor} rounded-2xl overflow-hidden aspect-square flex items-center justify-center p-6 shadow-sm cursor-pointer border-none w-full`}>        <img
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
         />
-      </div>
+      </button>
       <div className="mt-3 flex flex-col items-center text-center">
-        <h3 className="text-sm font-semibold text-foreground">{product.name}</h3>
+        <button onClick={() => navigate(`/product/${product.id}`)} className="text-sm font-semibold text-foreground hover:underline cursor-pointer bg-transparent border-none p-0">
+          {product.name}
+        </button>
         <p className="text-sm font-bold text-foreground mt-1">{product.price}</p>
-        <button className="mt-3 w-full max-w-[180px] py-2.5 px-6 rounded-full bg-[#f0e0cc] text-foreground text-sm font-semibold hover:bg-[#e6d0b8] transition-colors cursor-pointer">
+        <button onClick={handleAddToCart} className="mt-3 w-full max-w-[180px] py-2.5 px-6 rounded-full bg-[#f0e0cc] text-foreground text-sm font-semibold hover:bg-[#e6d0b8] transition-colors cursor-pointer">
           Add to Cart
         </button>
       </div>
@@ -192,6 +216,7 @@ function ProductCard({ product, index }: { product: typeof featuredProducts[0]; 
 }
 
 function FeaturedSection() {
+  const navigate = useNavigate();
   return (
     <section id="featured" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <motion.h2
@@ -210,13 +235,13 @@ function FeaturedSection() {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         {featuredProducts.map((product, index) => (
-          <ProductCard key={product.id} product={product} index={index} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </motion.div>
 
       <div className="flex justify-center mt-12">
-        <button className="px-8 py-3 rounded-full bg-[#f0e0cc] text-foreground font-semibold hover:bg-[#e6d0b8] transition-colors cursor-pointer">
-          Show Now
+        <button onClick={() => navigate("/catalog")} className="px-8 py-3 rounded-full bg-[#f0e0cc] text-foreground font-semibold hover:bg-[#e6d0b8] transition-colors cursor-pointer">
+          Shop Now
         </button>
       </div>
     </section>
@@ -243,7 +268,7 @@ function SpecialSection() {
         className="grid grid-cols-2 lg:grid-cols-4 gap-6"
       >
         {specialProducts.map((product, index) => (
-          <ProductCard key={product.id} product={product} index={index} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </motion.div>
     </section>

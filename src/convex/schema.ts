@@ -34,10 +34,50 @@ const schema = defineSchema(
 
     // add other tables here
 
-    // tableName: defineTable({
-    //   ...
-    //   // table fields
-    // }).index("by_field", ["field"])
+    products: defineTable({
+      name: v.string(),
+      price: v.number(),
+      description: v.string(),
+      category: v.string(),
+      image: v.string(),
+      bgColor: v.optional(v.string()),
+      inStock: v.optional(v.boolean()),
+      featured: v.optional(v.boolean()),
+      special: v.optional(v.boolean()),
+    }).index("by_category", ["category"])
+      .index("by_featured", ["featured"]),
+
+    userContent: defineTable({
+      userId: v.id("users"),
+      title: v.string(),
+      description: v.string(),
+      imageUrl: v.optional(v.string()),
+      status: v.union(v.literal("pending"), v.literal("approved"), v.literal("rejected")),
+      createdAt: v.number(),
+    }).index("by_user", ["userId"])
+      .index("by_status", ["status"]),
+
+    orders: defineTable({
+      userId: v.id("users"),
+      items: v.array(v.object({
+        productId: v.id("products"),
+        name: v.string(),
+        price: v.number(),
+        quantity: v.number(),
+        image: v.string(),
+      })),
+      total: v.number(),
+      status: v.union(v.literal("pending"), v.literal("confirmed"), v.literal("shipped"), v.literal("delivered")),
+      shippingInfo: v.object({
+        name: v.string(),
+        email: v.string(),
+        address: v.string(),
+        city: v.string(),
+        phone: v.string(),
+      }),
+      createdAt: v.number(),
+    }).index("by_user", ["userId"])
+      .index("by_status", ["status"]),
   },
   {
     schemaValidation: false,
