@@ -121,17 +121,17 @@ function HeroBanner() {
 
         {/* Center text */}
         <div className="text-center w-full py-2 sm:py-4 lg:py-6 z-10 relative px-16 sm:px-0">
-          <h1 className="text-base sm:text-2xl lg:text-3xl font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
+          <h1 className="text-sm sm:text-2xl lg:text-3xl font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
             DEALIOFIND: Curated Living.
             <br />
             Unbeatable Discoveries.
           </h1>
-          <p className="text-[#7a6b5a] mt-2 sm:mt-3 text-[10px] sm:text-sm font-normal">
+          <p className="text-[#7a6b5a] mt-1.5 sm:mt-3 text-[9px] sm:text-sm font-normal">
             Explore Premium Picks for Every Home
           </p>
           <button
             onClick={() => navigate("/catalog")}
-            className="mt-7 px-8 py-2.5 rounded-full bg-[#d5c4a8] text-[#3a2f28] text-sm font-medium hover:bg-[#c8b898] transition-colors cursor-pointer border border-[#c8b898]"
+            className="mt-4 sm:mt-7 px-5 sm:px-8 py-1.5 sm:py-2.5 rounded-full bg-[#d5c4a8] text-[#3a2f28] text-xs sm:text-sm font-medium hover:bg-[#c8b898] transition-colors cursor-pointer border border-[#c8b898]"
           >
             Shop Now
           </button>
