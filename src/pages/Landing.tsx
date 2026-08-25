@@ -108,7 +108,7 @@ function HeroBanner() {
 
   return (
     <section className="relative overflow-hidden bg-[#ede5d7]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 sm:pt-6 sm:pb-10 lg:pt-8 lg:pb-16 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 sm:pt-6 sm:pb-10 lg:pt-8 lg:pb-20 relative">
         {/* Left decorative image */}
         <div className="absolute left-0 lg:left-4 top-1/2 -translate-y-1/2">
           <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[120px] sm:h-[240px] lg:h-[340px] w-auto object-contain" />
