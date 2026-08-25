@@ -131,8 +131,8 @@ function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
-          <button onClick={() => navigate("/")} className="text-2xl font-serif font-bold text-foreground tracking-tight cursor-pointer bg-transparent border-none p-0 shrink-0">
-            Dealiofind
+          <button onClick={() => navigate("/")} className="cursor-pointer bg-transparent border-none p-0 shrink-0">
+            <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645899/IMG_7682_pqqoae.jpg" alt="Dealiofind" className="h-10 w-auto object-contain" />
           </button>
 
           {/* Desktop nav */}
@@ -195,41 +195,14 @@ function HeroBanner() {
   return (
     <section className="relative overflow-hidden bg-[#ede5d7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16 relative min-h-[400px] lg:min-h-[480px]">
-        {/* Left vases with pampas grass - exactly as in the reference image */}
-        <div className="hidden lg:flex absolute left-8 top-1/2 -translate-y-[55%] items-end">
-          <div className="relative w-[260px] h-[340px]">
-            {/* Tall dried pampas grass stalks */}
-            <div className="absolute top-0 left-4 w-1 h-20 bg-[#b8a88a] rounded-full" />
-            <div className="absolute top-[-8px] left-6 w-1 h-22 bg-[#c4b496] rounded-full rotate-[-5deg]" />
-            <div className="absolute top-2 left-8 w-0.5 h-18 bg-[#a89878] rounded-full rotate-[3deg]" />
-            {/* Pampas fluffy tops */}
-            <div className="absolute top-[-6px] left-1 w-5 h-8 bg-[#d4c4a4] rounded-full opacity-80" />
-            <div className="absolute top-[-10px] left-5 w-4 h-9 bg-[#c8b898] rounded-full opacity-70 rotate-[-8deg]" />
-            <div className="absolute top-[-4px] left-9 w-4 h-7 bg-[#d0c098] rounded-full opacity-75 rotate-[5deg]" />
-            {/* Tall cylindrical vase */}
-            <div className="absolute bottom-20 left-2 w-12 h-28 bg-[#c4b496] rounded-t-full" />
-            {/* Round vase */}
-            <div className="absolute bottom-16 left-[70px] w-20 h-20 bg-[#b8a88a] rounded-full" />
-            {/* Small round vase */}
-            <div className="absolute bottom-20 right-8 w-12 h-12 bg-[#c4b496] rounded-full" />
-          </div>
+        {/* Left decorative image */}
+        <div className="hidden lg:block absolute left-4 top-1/2 -translate-y-1/2">
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[360px] w-auto object-contain" />
         </div>
 
-        {/* Right coffee maker - exactly as in the reference image */}
-        <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2">
-          <div className="relative w-[240px] h-[300px]">
-            {/* Coffee machine body */}
-            <div className="absolute bottom-8 right-0 w-28 h-44 bg-[#e8e0d4] rounded-lg border border-[#d8d0c4]" />
-            {/* Machine top/filter area */}
-            <div className="absolute bottom-48 right-2 w-24 h-10 bg-[#f0e8dc] rounded-t-lg border border-[#d8d0c4]" />
-            {/* Glass carafe */}
-            <div className="absolute bottom-8 right-4 w-16 h-24 bg-[#d8c8a8]/40 rounded-b-lg border border-[#c8b898]" />
-            {/* Coffee drip line */}
-            <div className="absolute bottom-32 right-10 w-0.5 h-6 bg-[#8b6914]" />
-            {/* Cup on saucer */}
-            <div className="absolute bottom-4 right-20 w-12 h-8 bg-white rounded-b-full border border-[#d8d0c4]" />
-            <div className="absolute bottom-2 right-18 w-16 h-2 bg-white rounded-full border border-[#d8d0c4]" />
-          </div>
+        {/* Right decorative image */}
+        <div className="hidden lg:block absolute right-4 top-1/2 -translate-y-1/2">
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[360px] w-auto object-contain" />
         </div>
 
         {/* Center text */}
