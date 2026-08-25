@@ -101,28 +101,24 @@ export const updateProfile = mutation({
 /**
  * Owner-only: manually set a user's role by email.
  */
-export const setRoleByEmail = mutation({
-  args: {
-    email: v.string(),
-    role: v.union(
-      v.literal("owner"),
-      v.literal("admin"),
-      v.literal("user"),
-    ),
-  },
-  handler: async (ctx, args) => {
+/**
+ * One-time: if no owner exists yet, claim owner role for yourself.
+ * Once an owner exists, this stops working.
+ */
+export const claimOwner = mutation({
+  args: {},
+  handler: async (ctx) => {
     const userId = await getAuthUserId(ctx);
     if (!userId) throw new Error("Not authenticated");
-    const caller = await ctx.db.get(userId);
-    if (!caller || caller.role !== "owner") throw new Error("Only owner can set roles");
+    const user = await ctx.db.get(userId);
+    if (!user) throw new Error("User not found");
 
-    const target = await ctx.db
-      .query("users")
-      .withIndex("email", (q) => q.eq("email", args.email))
-      .first();
-    if (!target) throw new Error("User not found with that email");
+    // Check if any owner already exists
+    const allUsers = await ctx.db.query("users").collect();
+    const existingOwner = allUsers.find((u) => u.role === "owner");
+    if (existingOwner) throw new Error("An owner already exists. Contact them for access.");
 
-    await ctx.db.patch(target._id, { role: args.role });
-    return `Set ${args.email} to ${args.role}`;
+    await ctx.db.patch(userId, { role: "owner" });
+    return "You are now the store owner!";
   },
 });

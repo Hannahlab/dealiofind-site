@@ -18,6 +18,7 @@ export default function Dashboard() {
   const createContent = useMutation(api.userContent.create);
   const removeContent = useMutation(api.userContent.remove);
   const updateProfile = useMutation(api.users.updateProfile);
+  const claimOwner = useMutation(api.users.claimOwner);
 
   const [contentForm, setContentForm] = useState({ title: "", description: "", imageUrl: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -123,6 +124,22 @@ export default function Dashboard() {
               <span className="inline-block mt-1 px-2 py-0.5 rounded text-xs font-medium bg-[#d4a574]/20 text-[#d4a574] capitalize">
                 {user?.role}
               </span>
+            )}
+            {!isStaff && user?.role !== "owner" && (
+              <button
+                onClick={async () => {
+                  try {
+                    const result = await claimOwner();
+                    alert(result);
+                    window.location.reload();
+                  } catch (err: any) {
+                    alert(err.message || "Could not claim owner");
+                  }
+                }}
+                className="mt-2 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#d4a574] text-white text-xs font-semibold hover:bg-[#c49564] transition-colors cursor-pointer"
+              >
+                👑 Claim Owner Access
+              </button>
             )}
           </div>
           <div className="flex gap-3">
