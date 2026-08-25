@@ -139,7 +139,7 @@ function HeroBanner() {
       </div>
 
       {/* Dot indicators */}
-      <div className="flex justify-center gap-2.5 pb-8">
+      <div className="flex justify-center gap-2.5 pb-3">
         <span className="w-2 h-2 rounded-full bg-[#5a4a3a]" />
         <span className="w-2 h-2 rounded-full bg-[#c8b898]" />
         <span className="w-2 h-2 rounded-full bg-[#c8b898]" />
