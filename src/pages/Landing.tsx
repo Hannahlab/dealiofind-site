@@ -49,29 +49,31 @@ function HeroBanner() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative overflow-hidden bg-[#ede5d7]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-2 sm:pt-8 sm:pb-10 lg:pt-8 lg:pb-20 relative">
+    <section className="relative bg-[#ede5d7]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[280px] sm:min-h-[360px] lg:min-h-[440px] flex items-center justify-center">
         {/* Left decorative image */}
-        <div className="absolute left-0 lg:left-4 top-1/2 -translate-y-1/2">
-          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[120px] sm:h-[240px] lg:h-[340px] w-auto object-contain" />
+        <div className="absolute left-0 lg:left-2 top-1/2 -translate-y-1/2 pointer-events-none">
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[140px] sm:h-[260px] lg:h-[360px] w-auto object-contain" />
         </div>
 
         {/* Right decorative image */}
-        <div className="absolute right-0 lg:right-4 top-1/2 -translate-y-1/2">
-          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645889/IMG_7683_bg28ov.png" alt="" className="h-[120px] sm:h-[240px] lg:h-[340px] w-auto object-contain" />
+        <div className="absolute right-0 lg:right-2 top-1/2 -translate-y-1/2 pointer-events-none">
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645889/IMG_7683_bg28ov.png" alt="" className="h-[140px] sm:h-[260px] lg:h-[360px] w-auto object-contain" />
         </div>
 
         {/* Center text */}
-        <div className="text-center w-full pt-6 sm:py-4 lg:py-6 z-10 relative px-14 sm:px-0">
-          <h1 className="text-[11px] sm:text-2xl lg:text-3xl font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
-            DEALIOFIND: Curated Living. Unbeatable Discoveries.
+        <div className="text-center w-full z-10 relative px-16 sm:px-8 lg:px-0 py-8 sm:py-6 lg:py-4">
+          <h1 className="text-xl sm:text-3xl lg:text-[2.6rem] font-serif font-bold text-[#3a2f28] leading-[1.15] tracking-tight">
+            DEALIOFIND: Curated Living.
+            <br />
+            Unbeatable Discoveries.
           </h1>
-          <p className="text-[#7a6b5a] mt-1 sm:mt-3 text-[8px] sm:text-sm font-normal">
+          <p className="text-[#7a6b5a] mt-3 sm:mt-4 text-sm sm:text-base font-normal">
             Explore Premium Picks for Every Home
           </p>
           <button
             onClick={() => navigate("/catalog")}
-            className="mt-3 sm:mt-7 px-4 sm:px-8 py-1 sm:py-2.5 rounded-full bg-[#d5c4a8] text-[#3a2f28] text-[10px] sm:text-sm font-medium hover:bg-[#c8b898] transition-colors cursor-pointer border border-[#c8b898]"
+            className="mt-5 sm:mt-6 px-8 sm:px-10 py-2.5 sm:py-3 rounded-full bg-[#d5c4a8] text-[#3a2f28] text-sm sm:text-base font-medium hover:bg-[#c8b898] transition-colors cursor-pointer border border-[#c8b898]"
           >
             Shop Now
           </button>
