@@ -15,11 +15,11 @@ export function Header() {
     <header className="bg-[#faf7f4] border-b border-[#e8e0d8] sticky top-0 z-40">
       {/* Top utility row */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-end gap-6 py-3 text-sm text-foreground">
+        <div className="flex items-center justify-end gap-6 py-3 text-foreground">
           <button onClick={() => navigate(isAuthenticated ? "/dashboard" : "/auth")} className="hover:text-[#d4a574] transition-colors cursor-pointer bg-transparent border-none text-xs text-foreground">
             Account
           </button>
-          <button className="hover:text-[#d4a574] transition-colors cursor-pointer bg-transparent border-none text-sm text-foreground">Wishlist</button>
+          <span className="text-xs text-foreground hover:text-[#d4a574] transition-colors cursor-pointer">Wishlist</span>
           <button onClick={() => setIsOpen(true)} className="flex items-center gap-1.5 hover:text-[#d4a574] transition-colors cursor-pointer bg-transparent border-none text-xs text-foreground">
             <ShoppingCart className="h-4 w-4" />
             {itemCount > 0 ? `${itemCount} items` : "0 items"}
