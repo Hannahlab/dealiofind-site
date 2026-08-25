@@ -108,7 +108,7 @@ function HeroBanner() {
 
   return (
     <section className="relative overflow-hidden bg-[#ede5d7]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-0 lg:pb-0 relative min-h-[400px] lg:min-h-[480px]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 relative">
         {/* Left decorative image */}
         <div className="hidden lg:block absolute left-4 top-1/2 -translate-y-1/2">
           <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[360px] w-auto object-contain" />
@@ -120,7 +120,7 @@ function HeroBanner() {
         </div>
 
         {/* Center text */}
-        <div className="text-center w-full pt-28 lg:pt-24 z-10 relative">
+        <div className="text-center w-full py-4 lg:py-6 z-10 relative">
           <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
             DEALIOFIND: Curated Living.
             <br />
