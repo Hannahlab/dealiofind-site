@@ -32,9 +32,20 @@ const schema = defineSchema(
       isAnonymous: v.optional(v.boolean()), // is the user anonymous. do not remove
 
       role: v.optional(roleValidator), // role of the user. do not remove
+
+      phone: v.optional(v.string()),
+      address: v.optional(v.string()),
+      city: v.optional(v.string()),
+      province: v.optional(v.string()),
+      postalCode: v.optional(v.string()),
     }).index("email", ["email"]), // index for the email. do not remove or modify
 
-    // add other tables here
+    wishlist: defineTable({
+      userId: v.id("users"),
+      productId: v.id("products"),
+      createdAt: v.number(),
+    }).index("by_user", ["userId"])
+      .index("by_user_product", ["userId", "productId"]),
 
     products: defineTable({
       name: v.string(),

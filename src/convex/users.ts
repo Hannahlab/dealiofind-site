@@ -70,3 +70,59 @@ export const ensureRole = mutation({
     return "user";
   },
 });
+
+/**
+ * Update user profile (phone, address, city, province, postal code)
+ */
+export const updateProfile = mutation({
+  args: {
+    name: v.optional(v.string()),
+    phone: v.optional(v.string()),
+    address: v.optional(v.string()),
+    city: v.optional(v.string()),
+    province: v.optional(v.string()),
+    postalCode: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) throw new Error("Not authenticated");
+    const updates: Record<string, string> = {};
+    if (args.name !== undefined) updates.name = args.name;
+    if (args.phone !== undefined) updates.phone = args.phone;
+    if (args.address !== undefined) updates.address = args.address;
+    if (args.city !== undefined) updates.city = args.city;
+    if (args.province !== undefined) updates.province = args.province;
+    if (args.postalCode !== undefined) updates.postalCode = args.postalCode;
+    await ctx.db.patch(userId, updates);
+    return "updated";
+  },
+});
+
+/**
+ * Owner-only: manually set a user's role by email.
+ */
+export const setRoleByEmail = mutation({
+  args: {
+    email: v.string(),
+    role: v.union(
+      v.literal("owner"),
+      v.literal("admin"),
+      v.literal("user"),
+    ),
+  },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) throw new Error("Not authenticated");
+    const caller = await ctx.db.get(userId);
+    if (!caller || caller.role !== "owner") throw new Error("Only owner can set roles");
+
+    const target = await ctx.db
+      .query("users")
+      .withIndex("email", (q) => q.eq("email", args.email))
+      .first();
+    if (!target) throw new Error("User not found with that email");
+
+    await ctx.db.patch(target._id, { role: args.role });
+    return `Set ${args.email} to ${args.role}`;
+  },
+});
