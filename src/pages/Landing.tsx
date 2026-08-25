@@ -454,13 +454,13 @@ function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-[#3a2f28]">
               Newsletter Signup
             </h4>
-            <div className="flex gap-2">
+            <div className="flex gap-2 max-w-xs">
               <input
                 type="email"
                 placeholder="Email"
-                className="flex-1 px-4 py-2.5 rounded-lg bg-white/50 border border-[#c0b090] text-[#3a2f28] placeholder:text-[#8a7a6a] text-sm focus:outline-none focus:ring-2 focus:ring-[#3a2f28]/20"
+                className="flex-1 min-w-0 px-3 py-2 rounded-lg bg-white/50 border border-[#c0b090] text-[#3a2f28] placeholder:text-[#8a7a6a] text-sm focus:outline-none focus:ring-2 focus:ring-[#3a2f28]/20"
               />
-              <button className="px-5 py-2.5 rounded-lg bg-[#3a2f28] text-white text-sm font-semibold hover:bg-[#2a1f18] transition-colors cursor-pointer">
+              <button className="px-4 py-2 rounded-lg bg-[#3a2f28] text-white text-sm font-semibold hover:bg-[#2a1f18] transition-colors cursor-pointer shrink-0">
                 Join
               </button>
             </div>
