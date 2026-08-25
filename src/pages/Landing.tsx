@@ -63,17 +63,17 @@ function HeroBanner() {
 
         {/* Center text */}
         <div className="text-center w-full z-10 relative px-16 sm:px-8 lg:px-0 py-8 sm:py-6 lg:py-4">
-          <h1 className="text-sm sm:text-3xl lg:text-[2.6rem] font-serif font-bold text-[#3a2f28] leading-[1.15] tracking-tight max-w-[280px] sm:max-w-none mx-auto">
+          <h1 className="text-[13px] sm:text-3xl lg:text-[2.6rem] font-serif font-bold text-[#3a2f28] leading-[1.15] tracking-tight max-w-[260px] sm:max-w-none mx-auto">
             DEALIOFIND: Curated Living.
             <br />
             Unbeatable Discoveries.
           </h1>
-          <p className="text-[#7a6b5a] mt-2 sm:mt-4 text-[11px] sm:text-base font-normal">
+          <p className="text-[#7a6b5a] mt-1.5 sm:mt-4 text-[9px] sm:text-base font-normal">
             Explore Premium Picks for Every Home
           </p>
           <button
             onClick={() => navigate("/catalog")}
-            className="mt-4 sm:mt-6 px-6 sm:px-10 py-2 sm:py-3 rounded-full bg-[#d5c4a8] text-[#3a2f28] text-xs sm:text-base font-medium hover:bg-[#c8b898] transition-colors cursor-pointer border border-[#c8b898]"
+            className="mt-3 sm:mt-6 px-5 sm:px-10 py-1.5 sm:py-3 rounded-full bg-[#d5c4a8] text-[#3a2f28] text-[10px] sm:text-base font-medium hover:bg-[#c8b898] transition-colors cursor-pointer border border-[#c8b898]"
           >
             Shop Now
           </button>
