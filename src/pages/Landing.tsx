@@ -110,29 +110,23 @@ function HeroBanner() {
     <section className="relative overflow-hidden bg-[#ede5d7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 relative">
         {/* Left decorative image */}
-        <div className="hidden md:block absolute left-2 lg:left-4 top-1/2 -translate-y-1/2">
-          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[200px] md:h-[280px] lg:h-[360px] w-auto object-contain" />
+        <div className="hidden sm:block absolute left-0 lg:left-4 top-1/2 -translate-y-1/2">
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[160px] sm:h-[240px] lg:h-[340px] w-auto object-contain" />
         </div>
 
         {/* Right decorative image */}
-        <div className="hidden md:block absolute right-2 lg:right-4 top-1/2 -translate-y-1/2">
-          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645889/IMG_7683_bg28ov.png" alt="" className="h-[200px] md:h-[280px] lg:h-[360px] w-auto object-contain" />
-        </div>
-
-        {/* Mobile: show both images stacked above text */}
-        <div className="md:hidden flex justify-center gap-4 mb-4">
-          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[140px] w-auto object-contain" />
-          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645889/IMG_7683_bg28ov.png" alt="" className="h-[140px] w-auto object-contain" />
+        <div className="hidden sm:block absolute right-0 lg:right-4 top-1/2 -translate-y-1/2">
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645889/IMG_7683_bg28ov.png" alt="" className="h-[160px] sm:h-[240px] lg:h-[340px] w-auto object-contain" />
         </div>
 
         {/* Center text */}
         <div className="text-center w-full py-4 lg:py-6 z-10 relative">
-          <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
             DEALIOFIND: Curated Living.
             <br />
             Unbeatable Discoveries.
           </h1>
-          <p className="text-[#7a6b5a] mt-5 text-sm sm:text-[15px] font-normal">
+          <p className="text-[#7a6b5a] mt-3 text-xs sm:text-sm font-normal">
             Explore Premium Picks for Every Home
           </p>
           <button
