@@ -159,12 +159,12 @@ function CategoryTabs({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-2">
-      <div className="flex justify-center gap-6 sm:gap-12 lg:gap-24 border-b border-[#e8e0d8] overflow-x-auto">
+      <div className="flex justify-center gap-4 sm:gap-12 lg:gap-24 border-b border-[#e8e0d8]">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => onSelect(cat)}
-            className={`pb-4 text-base sm:text-lg font-serif font-bold transition-colors cursor-pointer bg-transparent border-none ${
+            className={`pb-4 text-xs sm:text-lg font-serif font-bold transition-colors cursor-pointer bg-transparent border-none whitespace-nowrap ${
               active === cat
                 ? "text-foreground border-b-2 border-foreground -mb-[2px]"
                 : "text-muted-foreground hover:text-foreground"
