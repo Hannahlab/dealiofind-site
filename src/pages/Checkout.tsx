@@ -22,11 +22,13 @@ export default function Checkout() {
   });
 
   const [payment, setPayment] = useState({
+    method: "card",
     cardNumber: "",
     expiry: "",
     cvv: "",
     cardName: "",
   });
+  const [shippingMethod, setShippingMethod] = useState("pargo");
 
   const handleShippingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,6 +142,26 @@ export default function Checkout() {
                 <h2 className="text-xl font-semibold text-foreground">Shipping Details</h2>
 
                 <div>
+                  <label className="text-sm font-medium text-foreground block mb-2">Delivery Method</label>
+                  <div className="flex gap-3">
+                    {[{ id: "pargo", label: "Pargo" }, { id: "paxi", label: "Paxi" }, { id: "courier", label: "The Courier Guy" }].map((m) => (
+                      <button
+                        key={m.id}
+                        type="button"
+                        onClick={() => setShippingMethod(m.id)}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer border ${
+                          shippingMethod === m.id
+                            ? "bg-foreground text-background border-foreground"
+                            : "bg-transparent text-foreground border-border hover:bg-muted"
+                        }`}
+                      >
+                        {m.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
                   <label className="text-sm font-medium text-foreground block mb-1.5">Full Name</label>
                   <input
                     required
@@ -208,9 +230,31 @@ export default function Checkout() {
               >
                 <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
                   <CreditCard className="h-5 w-5" />
-                  Payment Details
+                  Payment Method
                 </h2>
 
+                <div>
+                  <label className="text-sm font-medium text-foreground block mb-2">Select Payment</label>
+                  <div className="flex gap-3 flex-wrap">
+                    {[{ id: "card", label: "Card" }, { id: "paypal", label: "PayPal" }, { id: "eft", label: "EFT" }, { id: "snapscan", label: "SnapScan" }].map((m) => (
+                      <button
+                        key={m.id}
+                        type="button"
+                        onClick={() => setPayment({ ...payment, method: m.id })}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer border ${
+                          payment.method === m.id
+                            ? "bg-foreground text-background border-foreground"
+                            : "bg-transparent text-foreground border-border hover:bg-muted"
+                        }`}
+                      >
+                        {m.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {payment.method === "card" && (
+                <>
                 <div>
                   <label className="text-sm font-medium text-foreground block mb-1.5">Cardholder Name</label>
                   <input
@@ -259,6 +303,16 @@ export default function Checkout() {
                     />
                   </div>
                 </div>
+                </>
+                )}
+
+                {payment.method !== "card" && (
+                  <div className="bg-muted/50 rounded-xl p-4 text-sm text-muted-foreground">
+                    {payment.method === "paypal" && "You will be redirected to PayPal to complete your payment."}
+                    {payment.method === "eft" && "Bank details will be provided after placing your order. Please use your order number as reference."}
+                    {payment.method === "snapscan" && "A SnapScan QR code will be displayed after placing your order."}
+                  </div>
+                )}
 
                 <div className="flex gap-3 mt-6">
                   <button

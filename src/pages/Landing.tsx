@@ -363,14 +363,22 @@ function Footer() {
             </div>
 
             <h4 className="text-xs font-bold uppercase tracking-wider mt-8 mb-3 text-[#3a2f28]">
-              Payment / Shipping
+              Payment Methods
             </h4>
             <div className="flex gap-2.5 flex-wrap">
               <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">VISA</div>
               <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">Mastercard</div>
-              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">Maestro</div>
-              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">COD</div>
+              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">PayPal</div>
               <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">EFT</div>
+              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">SnapScan</div>
+            </div>
+            <h4 className="text-xs font-bold uppercase tracking-wider mt-5 mb-3 text-[#3a2f28]">
+              Shipping
+            </h4>
+            <div className="flex gap-2.5 flex-wrap">
+              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">Paxi</div>
+              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">Pargo</div>
+              <div className="px-3 py-1.5 rounded bg-white/50 border border-[#c0b090] text-[10px] font-bold tracking-wide text-[#3a2f28]">The Courier Guy</div>
             </div>
           </div>
         </div>
