@@ -244,7 +244,7 @@ function HeroBanner() {
           </p>
           <button
             onClick={() => navigate("/catalog")}
-            className="mt-7 px-8 py-2.5 rounded-full bg-white/80 text-[#3a2f28] text-sm font-medium hover:bg-white transition-colors cursor-pointer border border-white/40"
+            className="mt-7 px-8 py-2.5 rounded-full bg-[#d5c4a8] text-[#3a2f28] text-sm font-medium hover:bg-[#c8b898] transition-colors cursor-pointer border border-[#c8b898]"
           >
             Shop Now
           </button>
