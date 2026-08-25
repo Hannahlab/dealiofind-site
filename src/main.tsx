@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { RequireAuth } from "@/components/RequireAuth";
 import { CartProvider } from "@/hooks/use-cart";
 import { CartSheet } from "@/components/CartSheet";
+import { Header } from "@/components/Header";
 import { VlyToolbar } from "../vly-toolbar-readonly.tsx";
 import { ConvexAuthProvider } from "@convex-dev/auth/react";
 import { ConvexReactClient } from "convex/react";
@@ -124,6 +125,7 @@ createRoot(document.getElementById("root")!).render(
         <BrowserRouter>
           <CartProvider>
           <CartSheet />
+          <Header />
           <RouteSyncer />
           <Suspense fallback={<RouteLoading />}>
             <Routes>
