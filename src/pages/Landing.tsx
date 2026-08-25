@@ -62,7 +62,7 @@ function HeroBanner() {
         </div>
 
         {/* Center text */}
-        <div className="text-center w-full pt-10 sm:pt-14 lg:py-6 z-10 relative px-14 sm:px-0">
+        <div className="text-center w-full pt-10 sm:pt-14 lg:py-6 z-10 relative px-20 sm:px-16 lg:px-0">
           <h1 className="text-[9px] sm:text-xl lg:text-3xl font-serif font-bold text-[#3a2f28] leading-[1.2] tracking-tight">
             DEALIOFIND: Curated Living. Unbeatable Discoveries.
           </h1>
