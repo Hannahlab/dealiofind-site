@@ -132,7 +132,7 @@ function Header() {
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
           <button onClick={() => navigate("/")} className="cursor-pointer bg-transparent border-none p-0 shrink-0">
-            <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645899/IMG_7682_pqqoae.jpg" alt="Dealiofind" className="h-10 w-auto object-contain" />
+            <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645899/IMG_7682_pqqoae.jpg" alt="Dealiofind" className="h-10 w-auto object-contain mix-blend-multiply" />
           </button>
 
           {/* Desktop nav */}
@@ -202,7 +202,7 @@ function HeroBanner() {
 
         {/* Right decorative image */}
         <div className="hidden lg:block absolute right-4 top-1/2 -translate-y-1/2">
-          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[360px] w-auto object-contain" />
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645889/IMG_7683_bg28ov.png" alt="" className="h-[360px] w-auto object-contain" />
         </div>
 
         {/* Center text */}
