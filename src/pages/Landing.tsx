@@ -110,13 +110,19 @@ function HeroBanner() {
     <section className="relative overflow-hidden bg-[#ede5d7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 relative">
         {/* Left decorative image */}
-        <div className="hidden lg:block absolute left-4 top-1/2 -translate-y-1/2">
-          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[360px] w-auto object-contain" />
+        <div className="hidden md:block absolute left-2 lg:left-4 top-1/2 -translate-y-1/2">
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[200px] md:h-[280px] lg:h-[360px] w-auto object-contain" />
         </div>
 
         {/* Right decorative image */}
-        <div className="hidden lg:block absolute right-4 top-1/2 -translate-y-1/2">
-          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645889/IMG_7683_bg28ov.png" alt="" className="h-[360px] w-auto object-contain" />
+        <div className="hidden md:block absolute right-2 lg:right-4 top-1/2 -translate-y-1/2">
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645889/IMG_7683_bg28ov.png" alt="" className="h-[200px] md:h-[280px] lg:h-[360px] w-auto object-contain" />
+        </div>
+
+        {/* Mobile: show both images stacked above text */}
+        <div className="md:hidden flex justify-center gap-4 mb-4">
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645893/IMG_7685_ictnrk.png" alt="" className="h-[140px] w-auto object-contain" />
+          <img src="https://res.cloudinary.com/kfcu2z4r/image/upload/v1787645889/IMG_7683_bg28ov.png" alt="" className="h-[140px] w-auto object-contain" />
         </div>
 
         {/* Center text */}
@@ -161,7 +167,7 @@ function CategoryTabs({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-2">
-      <div className="flex justify-center gap-12 sm:gap-16 lg:gap-24 border-b border-[#e8e0d8]">
+      <div className="flex justify-center gap-6 sm:gap-12 lg:gap-24 border-b border-[#e8e0d8] overflow-x-auto">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -272,7 +278,7 @@ function Footer() {
   return (
     <footer className="bg-[#d5c4a8] text-[#3a2f28] mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-serif font-bold mb-3">Dealiofind</h3>
